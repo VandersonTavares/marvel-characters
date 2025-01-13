@@ -1,8 +1,12 @@
+// src/App.tsx
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import "./App.css";
-import { getCharacters } from "./services/characterService";
+import {
+  getCharacters,
+  getDetailedCharacter,
+} from "./services/characterService";
 import CharacterCard from "./components/CharcarterCard/CharacterCard";
 import { Link } from "react-router-dom";
 
@@ -21,10 +25,7 @@ function App() {
     setLoading(true);
     try {
       const newCharacters = await getCharacters(offset);
-      // Atualiza o estado com os novos personagens e salva no localStorage
-      const updatedCharacters = [...characters, ...newCharacters];
-      setCharacters(updatedCharacters);
-      localStorage.setItem("characters", JSON.stringify(updatedCharacters));
+      setCharacters((prevCharacters) => [...prevCharacters, ...newCharacters]);
     } catch (error) {
       console.error("Error fetching characters:", error);
     } finally {
@@ -33,13 +34,7 @@ function App() {
   };
 
   useEffect(() => {
-    const storedCharacters = localStorage.getItem("characters");
-    if (storedCharacters) {
-      setCharacters(JSON.parse(storedCharacters));
-      setLoading(false);
-    } else {
-      fetchCharacters();
-    }
+    fetchCharacters();
   }, [offset]);
 
   return (
@@ -67,7 +62,7 @@ function App() {
       <div className="card-container">
         {characters.map((char) => (
           <Link to={`/character/${char.id}`} key={uuidv4()}>
-            <CharacterCard char={char} />
+            <CharacterCard key={char.id} char={char} />
           </Link>
         ))}
       </div>
