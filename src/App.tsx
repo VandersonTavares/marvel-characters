@@ -3,10 +3,7 @@ import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import "./App.css";
-import {
-  getCharacters,
-  getDetailedCharacter,
-} from "./services/characterService";
+import { getCharacters } from "./services/characterService";
 import CharacterCard from "./components/CharcarterCard/CharacterCard";
 import { Link } from "react-router-dom";
 

@@ -1,65 +1,179 @@
+.character-details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+.hero-img img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
+
+.hero-details {
+  width: 100%;
+  max-width: 450px;
+}
+
+.character-details h2 {
+  color: black;
+}
+
+.character-details p {
+  color: #a1a1a1;
+}
+
 .character-details-card {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    width: 300px;
-    margin: 20px auto;
-    font-family: Arial, sans-serif;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 90%;
+  max-width: 300px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
 }
 
 .character-details-card img {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 .character-details-card .details {
-    padding: 20px;
+  padding: 20px;
 }
 
 .character-details-card .details h2 {
-    margin: 0 0 10px;
-    font-size: 24px;
-    color: #333;
+  margin: 0 0 10px;
+  font-size: 24px;
+  color: #333;
 }
 
 .character-details-card .details p {
-    margin: 0;
-    font-size: 16px;
-    color: #666;
+  margin: 0;
+  font-size: 16px;
+  color: #666;
 }
 
 .button-voltar {
-    display: flex;
-    justify-content: center;
-    margin-top: 2rem;
-  }
-  
-  .voltarButton {
-    background-color: black;
-    font-weight: bold;
-    color: white;
-    padding: 1rem 2rem;
-    cursor: pointer;
-    position: relative;
-    display: inline-block;
-    text-align: center;
-    user-select: none;
-    transition: background-color 0.3s ease;
-    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
-  }
-  
-  .voltarButton:hover {
-    background-color: red;
-  }
-  
-  .voltarButton::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.voltarButton {
+  background-color: black;
+  font-weight: bold;
+  color: white;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  user-select: none;
+  transition: background-color 0.3s ease;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 20px),
+    calc(100% - 20px) 100%,
+    0 100%
+  );
+}
+
+.voltarButton:hover {
+  background-color: red;
+}
+
+.voltarButton::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid transparent;
+  pointer-events: none;
+}
+
+.comics {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  color: black;
+}
+
+.grid-comics {
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.comic {
+  width: 100px;
+}
+
+.my-comic-list {
+  /* border: 1px solid black; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  color: black;
+}
+
+.voltarButton a {
+  color: #fff;
+}
+
+.my-comic-list img {
+  max-width: 150px;
+}
+
+@media (max-width: 768px) {
+  .character-details-card {
     width: 100%;
-    height: 100%;
-    border: 2px solid transparent;
-    pointer-events: none;
+    max-width: 90%;
   }
+
+  .hero-details {
+    width: 100%;
+  }
+
+  .character-details-card .details h2 {
+    font-size: 20px;
+  }
+
+  .character-details-card .details p {
+    font-size: 14px;
+  }
+
+  .voltarButton {
+    padding: 0.8rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .character-details-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-details {
+    width: 100%;
+  }
+
+  .character-details-card .details h2 {
+    font-size: 18px;
+  }
+
+  .character-details-card .details p {
+    font-size: 12px;
+  }
+
+  .voltarButton {
+    padding: 0.6rem 1rem;
+  }
+}

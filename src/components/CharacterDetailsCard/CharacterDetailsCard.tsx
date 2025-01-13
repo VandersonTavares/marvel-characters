@@ -1,5 +1,6 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getDetailedCharacter } from "../../services/characterService";
+import { getComic } from "../../services/comicService";
 import { useEffect, useState } from "react";
 import "./styles.css";
 
@@ -13,11 +14,21 @@ interface Character {
   };
 }
 
+interface Comic {
+  title: string;
+  thumbnail: {
+    path: string;
+    extension: string;
+  };
+}
+
 const CharacterDetailsCard = () => {
   const { id } = useParams<{ id: string }>();
 
   const [character, setCharacter] = useState<Character | null>(null);
   const [loading, setLoading] = useState(true);
+  const [comicLoading, setComicLoading] = useState(true);
+  const [comic, setComic] = useState<Comic[]>([]);
 
   const fetchCharacters = async () => {
     setLoading(true);
@@ -31,35 +42,73 @@ const CharacterDetailsCard = () => {
     }
   };
 
+  const fetchComics = async () => {
+    setComicLoading(true);
+    try {
+      const newComics = await getComic(Number(id));
+      setComic(newComics);
+    } catch (error) {
+      console.error("Error fetching comics:", error);
+    } finally {
+      setComicLoading(false);
+    }
+  };
+
   useEffect(() => {
     fetchCharacters();
+    fetchComics();
   }, [id]);
+
+  console.log("COMIS DO GET", comic);
 
   return (
     <>
       <div className="button-voltar">
-        <div className="voltarButton" onClick={() => "voltar"}>
-          Voltar
+        <div className="voltarButton">
+          <Link to={"/"}>Voltar</Link>
         </div>
       </div>
       <div>
-        <h1>Character Details</h1>
         {loading ? (
           <p>Loading...</p>
         ) : (
           character && (
-            <div>
-              <div className="hero-img">
-                <img
-                  src={`${character.thumbnail?.path}${
-                    "." + character.thumbnail?.extension
-                  }`}
-                />{" "}
+            <>
+              <h1>{character.name}</h1>
+              <div className="character-details">
+                <div className="hero-img">
+                  <img
+                    src={`${character.thumbnail?.path}${
+                      "." + character.thumbnail?.extension
+                    }`}
+                  />{" "}
+                </div>
+                <div className="hero-details">
+                  <p>{character.description}</p>
+                  {!character.description && <p>Sem descrição</p>}
+                </div>
               </div>
-              <h2>{character.name}</h2>
-              <p>{character.description}</p>
-            </div>
+            </>
           )
+        )}
+      </div>
+      <div className="my-comic-container">
+        <h1>Comics</h1>
+        {comicLoading ? (
+          <p className="load-more-button">Loading comics...</p>
+        ) : (
+          <div className="my-comic-list">
+            {comic.map((comic) => (
+              <div key={comic.title}>
+                <img
+                  src={`${comic.thumbnail?.path}${
+                    "." + comic.thumbnail?.extension
+                  }`}
+                  alt={comic.title}
+                />
+              </div>
+            ))}
+          </div>
         )}
       </div>
     </>
