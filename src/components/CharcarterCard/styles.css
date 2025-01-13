@@ -1,0 +1,88 @@
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); 
+  gap: 10px; 
+  margin: 20px;
+}
+
+.card {
+  width: 100%; /* Fazer o card preencher a largura da célula */
+  height: 300px;
+  text-align: center; /* Centralizar o texto */
+  background: linear-gradient(to bottom, black 50%, red 50%); /* Gradiente de preto para vermelho */
+  background-size: 100% 200%; /* Tamanho do fundo para permitir a transição */
+  background-position: 0 0; /* Posição inicial do fundo */
+  color: white; /* Cor do texto */
+  margin: 10px;
+  overflow: hidden;
+  transition: background-position 0.3s ease; /* Transição suave */
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+}
+
+.card:hover {
+  background-position: 0 -100%; /* Mover o fundo para cima ao hover */
+  transition: background-position 0.3s ease; /* Transição suave */
+}
+
+.img {
+  width: 100%; /* Garantir que a div da imagem ocupe toda a largura do card */
+  height: 200px; /* Definir uma altura fixa para a imagem */
+  border-bottom: 3px solid red;
+  overflow: hidden; /* Esconde qualquer parte da imagem que ultrapasse a div */
+}
+
+.img img {
+  width: 100%; /* Ajustar imagem à largura do card */
+  height: 200px; /* Definir uma altura fixa para a imagem */
+  object-fit: fill; /* Manter a proporção da imagem e cobrir o card */
+  transition: transform 0.3s ease; /* Adicionar transição suave para o zoom */
+}
+
+.card:hover .img img {
+  transform: scale(1.1); /* Aplicar zoom de 10% na imagem */
+}
+
+.card .title {
+  font-size: 12px;
+  font-weight: bold;
+  margin: 10px 0;
+  text-transform: uppercase; /* Letras maiúsculas */
+}
+
+.card .subtitle {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/* Media Queries para responsividade */
+@media (max-width: 1200px) {
+  .card-container {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .card-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .card-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .card-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .card {
+    height: auto; /* Ajustar altura do card para conteúdo */
+  }
+  
+  .card img {
+    height: auto; /* Ajustar altura da imagem para conteúdo */
+  }
+}

@@ -1,0 +1,30 @@
+.character-details-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+}
+
+.character-details-card img {
+    width: 100%;
+    height: auto;
+}
+
+.character-details-card .details {
+    padding: 20px;
+}
+
+.character-details-card .details h2 {
+    margin: 0 0 10px;
+    font-size: 24px;
+    color: #333;
+}
+
+.character-details-card .details p {
+    margin: 0;
+    font-size: 16px;
+    color: #666;
+}

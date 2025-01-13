@@ -1,0 +1,60 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.button-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.load-more-button {
+  background-color: black;
+  font-weight: bold;
+  color: white;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  user-select: none;
+  transition: background-color 0.3s ease;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+}
+
+.load-more-button:hover {
+  background-color: red;
+}
+
+.load-more-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid transparent;
+  pointer-events: none;
+}
+
+/* Importação da fonte Anton */
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+.marvel-text {
+  font-family: 'Anton', sans-serif; /* Utilizando a fonte Anton */
+  font-size: 72px; /* Tamanho grande como a logo */
+  font-weight: bold;
+  color: #e62429; /* Cor vermelha característica da Marvel */
+  text-transform: uppercase; /* Letras maiúsculas */
+  text-shadow: 2px 2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, -2px -2px 0 #fff; /* Sombra branca em todos os lados */
+  letter-spacing: -5px; /* Espaçamento entre as letras */
+  padding: 20px;
+}
+
+.marvel-container {
+  text-align: center;
+  margin-top: 50px;
+}
